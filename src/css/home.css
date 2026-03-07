@@ -1,0 +1,156 @@
+/*@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+*/
+* {
+  /* border: 1px solid red; */
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-image: url(../assets/home.png);
+  height: 100vh;
+  background-attachment: fixed;
+  padding: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  background-size: 100vw 100vh;
+
+  /* overflow: hidden; */
+}
+
+/*@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}*/
+
+.upper {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.vvlogo {
+  position: absolute;
+  right: 3vh;
+  width: 10vw;
+}
+
+.title {
+  width: 50%;
+  /* border: 5px solid blue; */
+}
+
+.inclogo {
+  position: absolute;
+  left: 3vh;
+  width: 10vw;
+}
+.mascot {
+  height: 80vh;
+  margin-top: 50px;
+  position: absolute;
+  /* border:1px solid red; */
+}
+.btn {
+  padding: 15px;
+  font-weight: 700;
+  font-size: 2vh;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.btn--action {
+  display: block;
+  max-width: 50vh;
+  width: 50vw;
+  padding:.9vh;
+  border-radius:3vh;
+  background-color: #c8ffae;
+  color: #000;
+  transition: all 0.5s ease 0s;
+  box-shadow: 0 10px #689357;
+  /*margin-bottom: 30px;*/
+  text-align: center;
+}
+
+
+
+
+
+.btn--action span {
+  display: inline-block;
+  /* position: relative; */
+  transition: all 0.5s ease;
+}
+
+.btn--action span:before {
+  content: "\f04b";
+  color: #000;
+  font-size: 1rem;
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  /* position: absolute; */
+  /* top: 10px; */
+  /* left: 1.5rem; */
+  opacity: 0;
+  transition: all 0.1s ease 0s;
+}
+
+.btn--action:hover span {
+  padding-left: 1.5rem;
+}
+
+.btn--action:hover span:before {
+  left: 0;
+  opacity: 1;
+}
+
+.btn--action:active {
+  box-shadow: 0 5px #f0932b;
+  transform: translateY(5px);
+}
+
+
+.levels-container{
+  display: flex;
+  justify-content: center;
+  padding: 2vw;
+}
+.levels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+  margin-top: 8vh;
+  padding: 20px;
+  width: 100vh;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+.vv {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 3vh;
+}
+.inc{
+  font-size: 3vh;
+}
+
+.logos {
+  text-align: center;
+  color: rgb(49, 49, 49);
+  margin-top: 3vh;
+}
+
