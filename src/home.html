@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css" />
+
+  </head>
+  <body>
+    <div ><img class="vvlogo" src="./assets/vv.png" /></div>
+    <div ><img class="inclogo" src="./assets/ie.png" /></div>
+
+    <div class="upper">
+        <div class="logos">
+            <h1 class="vv">Sri Sathya Sai Vidya Vahini</h1>
+            <h1 class="inc">INCLUSIVE EDUCATION</h1>
+        </div>
+    </div>
+<div class="levels-container">
+  <div class="levels">
+    <a href="./level1.html" class="btn btn--action"><span> Level 1</span></a>
+    <a href="./level2.html" class="btn btn--action"><span> Level 2</span></a>
+    <a href="./level3.html" class="btn btn--action"><span> Level 3</span></a>
+    <a href="./level4.html" class="btn btn--action"><span> Level 4</span></a>
+    <a href="./level5.html" class="btn btn--action"><span> level 5</span></a>
+    <a href="./level6.html" class="btn btn--action"><span> level 6</span></a>
+    <a href="./level7.html" class="btn btn--action"><span> level 7</span></a>
+    <a href="./level8.html" class="btn btn--action"><span> level 8</span></a>
+    <a href="./level9.html" class="btn btn--action"><span> level 9</span></a>
+    <a href="./level10.html" class="btn btn--action"><span> level 10</span></a>
+  </div>
+</div>
+
+
+    <div >
+        <audio id="backgroundMusic" autoplay>
+            <source src="./assets/bgm.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div id="backgroundMusic">
+            <audio autoplay="{true}">
+            <source src="./assets/bgm.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+            </audio>
+            </div>
+    </div>
+    <script>
+//     function bgmusic() {
+//     bgm = new Audio("bgm.mp3");
+//     bgm.play();
+// }
+// bgmusic();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var backgroundMusic = document.getElementById("backgroundMusic");
+  
+  // Check if the audio is playing
+  if (backgroundMusic.paused) {
+    // Attempt to play the audio
+    backgroundMusic.play().catch(function(error) {
+      console.error("Failed to play audio:", error);
+      
+      // Provide a fallback mechanism (e.g., play on user interaction)
+      document.addEventListener("click", function() {
+        backgroundMusic.play().then(function() {
+          console.log("Audio playback started.");
+        }).catch(function(error) {
+          console.error("Failed to play audio:", error);
+        });
+      }, { once: true }); // Only play audio once on user interaction
+    });
+  } else {
+    console.log("Audio playback started.");
+  }
+});
+
+// function simulateDocumentClick() {
+//   var event = new MouseEvent('click', {
+//     bubbles: true,
+//     cancelable: true,
+//     view: window
+//   });
+
+//   document.dispatchEvent(event);
+// }
+
+// simulateDocumentClick();
+
+
+    </script>
+  </body>
+</html>
