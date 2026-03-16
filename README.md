@@ -36,7 +36,7 @@ This project aims to support inclusive education by providing an accessible typi
 • Achievement badges and gamification  
 • Typing analytics dashboard  
 • Expanded accessibility features  
-• Adaptive difficulty levels  
+• Adaptive difficulty levels 
 
 ---
 
