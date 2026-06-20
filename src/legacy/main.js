@@ -156,7 +156,7 @@ function bootEngine() {
   // ── Runtime state ────────────────────────────────────────
   let currentStage = 0;
   let userInput = "";
-  let soundEnabled = localStorage.getItem("type-tutor-sound") === "off";
+  let soundEnabled = false;
   let startTime = null;
   let timerInterval = null;
   let pausedTime = 0;
