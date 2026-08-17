@@ -25,7 +25,7 @@ function getProfiles() {
 function getActiveProfile() {
   const profileId = getActiveProfileId();
   if (profileId === "guest") {
-    return { id: "guest", name: "Guest", age: null, avatar: "Guest" };
+    return { id: "guest", name: "Guest Mode", age: null, avatar: "Guest" };
   }
   return getProfiles().find((profile) => profile.id === profileId) || null;
 }
@@ -408,5 +408,13 @@ function initHomePage() {
   ensureProfileReady();
   syncProfileAvatarChip();
 }
+
+/* Called by goToLevels() when a profile is switched/created/guest-started
+   while already on home.html, so the greeting and the top-right avatar
+   chip both refresh immediately — same as the sidebar already does. */
+window.refreshHomeProfileUI = function () {
+  renderPlayerGreeting();
+  syncProfileAvatarChip();
+};
 
 window.addEventListener("DOMContentLoaded", initHomePage);

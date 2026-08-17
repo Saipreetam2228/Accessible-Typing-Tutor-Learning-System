@@ -8,6 +8,10 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&family=Baloo+2:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/fab.css" />
     <link rel="stylesheet" href="css/sidebar.css" />
     <style>
@@ -19,10 +23,10 @@
         padding: 0;
       }
       :root {
-        --g1: #2e7d52;
-        --g2: #43a573;
-        --g3: #7cc899;
-        --g4: #b8e8cc;
+        --g1: #4b3fd6;
+        --g2: #6c63ff;
+        --g3: #9b93ff;
+        --g4: #d6d2ff;
         --sun: #f5a623;
         --sun2: #fbcb6a;
         --sky: #4a90d9;
@@ -37,18 +41,18 @@
         --text: #1a2b1f;
         --muted: #6b7a6d;
         --light: #a8b8ac;
-        --border: rgba(46, 125, 82, 0.15);
+        --border: rgba(108, 99, 255, 0.15);
         --r: 16px;
         --r-lg: 24px;
         --r-xl: 32px;
-        --sh: 0 4px 20px rgba(46, 125, 82, 0.1);
-        --sh-md: 0 8px 32px rgba(46, 125, 82, 0.14);
-        --sh-lg: 0 12px 48px rgba(46, 125, 82, 0.18);
+        --sh: 0 4px 20px rgba(108, 99, 255, 0.1);
+        --sh-md: 0 8px 32px rgba(108, 99, 255, 0.14);
+        --sh-lg: 0 12px 48px rgba(108, 99, 255, 0.18);
       }
       html,
       body {
         min-height: 100%;
-        font-family: "Nunito", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         background: linear-gradient(
           180deg,
           #87ceeb 0%,
@@ -101,6 +105,34 @@
         z-index: 0;
         overflow: hidden;
       }
+      .results-clouds {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .results-clouds img {
+        position: absolute;
+        opacity: 0.85;
+        width: 160px;
+      }
+      .results-clouds .rc-1 {
+        top: 6%;
+        left: 4%;
+        width: 130px;
+      }
+      .results-clouds .rc-2 {
+        top: 4%;
+        right: 6%;
+        width: 150px;
+      }
+      .results-clouds .rc-3 {
+        top: 16%;
+        left: 42%;
+        width: 110px;
+        opacity: 0.6;
+      }
       .bubble {
         position: absolute;
         border-radius: 50%;
@@ -122,122 +154,92 @@
         position: relative;
         z-index: 1;
       }
-      .top-bar {
-        background: rgba(255, 255, 255, 0.75);
-        -webkit-backdrop-filter: blur(24px);
-        backdrop-filter: blur(24px);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 20px;
-        position: sticky;
-        top: 0;
-        z-index: 99;
-      }
-      .logo-wrap {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .logo-sun {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        background: conic-gradient(
-          var(--sun) 0 33%,
-          var(--g3) 33% 66%,
-          var(--sky) 66% 100%
-        );
+      /* ===== Shared site header — matches home.html / index.html ===== */
+      .top-header {
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 12px rgba(245, 166, 35, 0.3);
-        animation: spin 20s linear infinite;
+        gap: 18px;
+        max-width: 900px;
+        margin: 14px auto 4px;
+        background: linear-gradient(135deg, #d9edff 0%, #eef8ff 100%);
+        border: 1.5px solid rgba(255, 255, 255, 0.7);
+        border-radius: 40px;
+        padding: 12px 32px;
+        box-shadow:
+          0 10px 28px rgba(74, 144, 217, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        position: sticky;
+        top: 10px;
+        z-index: 99;
       }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
+      .header-logo {
+        width: 52px;
+        height: 52px;
+        object-fit: contain;
+        flex-shrink: 0;
       }
-      .logo-inner {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: #fff;
+      .header-title {
+        text-align: center;
       }
-      .app-title {
-        font-family: "Fredoka One", sans-serif;
-        font-size: 22px;
-        color: var(--g1);
-        letter-spacing: 0.02em;
+      .header-title h1 {
+        font-family: "Nunito", "Segoe UI", sans-serif;
+        font-weight: 800;
+        font-size: 23px;
+        color: #23305c;
+        letter-spacing: 0.01em;
+        margin: 0;
       }
-      .app-sub {
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--muted);
-        letter-spacing: 0.08em;
+      .header-title p {
+        font-size: 10.5px;
+        font-weight: 800;
+        color: #4b3fd6;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
+        margin: 3px 0 0;
+      }
+      .results-subbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 20px;
+        flex-wrap: wrap;
       }
       .results-home-link {
         display: flex;
         align-items: center;
         gap: 6px;
-        background: rgba(46, 125, 82, 0.1);
-        border: 2px solid rgba(46, 125, 82, 0.2);
+        background: rgba(108, 99, 255, 0.1);
+        border: 2px solid rgba(108, 99, 255, 0.2);
         border-radius: 30px;
         padding: 7px 14px;
         text-decoration: none;
-        font-family: "Nunito", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 12px;
-        font-weight: 800;
-        color: #2e7d52;
+        font-weight: 700;
+        color: #4b3fd6;
         white-space: nowrap;
       }
       .lang-btn {
         display: flex;
         align-items: center;
         gap: 7px;
-        background: rgba(46, 125, 82, 0.1);
-        border: 2px solid rgba(46, 125, 82, 0.2);
+        background: rgba(108, 99, 255, 0.1);
+        border: 2px solid rgba(108, 99, 255, 0.2);
         border-radius: 30px;
         padding: 7px 14px;
         cursor: pointer;
-        font-family: "Nunito", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 12px;
-        font-weight: 800;
+        font-weight: 700;
         color: var(--g1);
         transition: 0.2s;
         white-space: nowrap;
       }
       .lang-btn:hover {
-        background: rgba(46, 125, 82, 0.18);
+        background: rgba(108, 99, 255, 0.18);
         border-color: var(--g2);
-      }
-      .rainbow {
-        display: flex;
-        height: 5px;
-      }
-      .r1 {
-        flex: 1;
-        background: linear-gradient(90deg, #ff6b6b, #ff8e53);
-      }
-      .r2 {
-        flex: 1;
-        background: linear-gradient(90deg, #ffd166, #fff176);
-      }
-      .r3 {
-        flex: 1;
-        background: linear-gradient(90deg, #06d6a0, #43a573);
-      }
-      .r4 {
-        flex: 1;
-        background: linear-gradient(90deg, #4a90d9, #74b9ff);
-      }
-      .r5 {
-        flex: 1;
-        background: linear-gradient(90deg, #9b59b6, #c39bd3);
       }
       .lang-overlay {
         display: none;
@@ -275,7 +277,7 @@
       .lang-hd {
         background: linear-gradient(
           135deg,
-          rgba(46, 125, 82, 0.1),
+          rgba(108, 99, 255, 0.1),
           rgba(124, 200, 153, 0.06)
         );
         padding: 16px 20px;
@@ -285,7 +287,7 @@
         border-bottom: 2px solid var(--g4);
       }
       .lang-hd-title {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 20px;
         color: var(--g1);
       }
@@ -329,7 +331,7 @@
         background: rgba(124, 200, 153, 0.1);
       }
       .lang-item.sel {
-        background: rgba(46, 125, 82, 0.1);
+        background: rgba(108, 99, 255, 0.1);
       }
       .lang-item.sel::after {
         content: "✓";
@@ -393,7 +395,7 @@
         background: var(--g1);
         color: #fff;
         border-color: var(--g1);
-        box-shadow: 0 4px 16px rgba(46, 125, 82, 0.35);
+        box-shadow: 0 4px 16px rgba(108, 99, 255, 0.35);
       }
       .pill.perfect {
         border-color: var(--g2);
@@ -414,7 +416,7 @@
         background: transparent;
         border: none;
         border-radius: 28px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 16px 40px rgba(75, 63, 214, 0.16);
         overflow: hidden;
         margin-bottom: 18px;
       }
@@ -423,10 +425,10 @@
         text-align: center;
         background: linear-gradient(
           160deg,
-          #1a1a2e 0%,
-          #16213e 35%,
-          #0f3460 65%,
-          #533483 100%
+          #eef8ff 0%,
+          #d7ecfb 45%,
+          #bfe0f7 75%,
+          #aed4f2 100%
         );
         border-bottom: none;
         position: relative;
@@ -440,17 +442,17 @@
         background:
           radial-gradient(
             ellipse 70% 50% at 50% -10%,
-            rgba(255, 200, 50, 0.22) 0%,
+            rgba(255, 200, 50, 0.18) 0%,
             transparent 60%
           ),
           radial-gradient(
             ellipse 40% 40% at 15% 85%,
-            rgba(255, 120, 0, 0.15) 0%,
+            rgba(108, 99, 255, 0.12) 0%,
             transparent 55%
           ),
           radial-gradient(
             ellipse 40% 40% at 85% 85%,
-            rgba(130, 60, 255, 0.18) 0%,
+            rgba(75, 63, 214, 0.14) 0%,
             transparent 55%
           );
       }
@@ -462,7 +464,7 @@
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(255, 200, 50, 0.07),
+          rgba(255, 200, 50, 0.1),
           transparent 70%
         );
         top: 50%;
@@ -480,8 +482,8 @@
         line-height: 1;
         display: block;
         animation: starPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-        filter: drop-shadow(0 0 20px rgba(255, 200, 50, 0.95))
-          drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 0 16px rgba(255, 178, 20, 0.75))
+          drop-shadow(0 4px 8px rgba(75, 63, 214, 0.25));
       }
       @keyframes starPop {
         0% {
@@ -515,28 +517,26 @@
         }
       }
       .result-msg {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 42px;
-        color: #fff;
+        color: #23305c;
         margin-bottom: 6px;
         position: relative;
         z-index: 1;
         animation: fadeUp 0.4s 0.1s both;
-        text-shadow:
-          0 0 30px rgba(255, 200, 50, 0.5),
-          0 4px 14px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 2px 0 rgba(255, 255, 255, 0.6);
       }
       .result-sub {
         font-size: 14px;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.6);
+        color: #566089;
         margin-bottom: 22px;
         position: relative;
         z-index: 1;
         animation: fadeUp 0.4s 0.2s both;
       }
       .big-acc {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 100px;
         line-height: 1;
         display: block;
@@ -556,43 +556,43 @@
         }
       }
       .acc-g {
-        background: linear-gradient(180deg, #7cff9b 0%, #2ecc71 100%);
+        background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: drop-shadow(0 4px 16px rgba(46, 204, 113, 0.6));
+        filter: drop-shadow(0 4px 12px rgba(22, 163, 74, 0.35));
       }
       .acc-a {
         background: linear-gradient(
           180deg,
-          #ffe566 0%,
-          #ffb300 60%,
+          #ffcc33 0%,
+          #ffa500 60%,
           #ff8c00 100%
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: drop-shadow(0 4px 16px rgba(255, 180, 0, 0.6));
+        filter: drop-shadow(0 4px 12px rgba(255, 160, 0, 0.35));
       }
       .acc-r {
-        background: linear-gradient(180deg, #ff8a80 0%, #d9534f 100%);
+        background: linear-gradient(180deg, #ff6b6b 0%, #c0392b 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        filter: drop-shadow(0 4px 16px rgba(217, 83, 79, 0.6));
+        filter: drop-shadow(0 4px 12px rgba(192, 57, 43, 0.35));
       }
       .result-detail {
         font-size: 13px;
         font-weight: 800;
-        color: rgba(255, 255, 255, 0.75);
+        color: #33406b;
         position: relative;
         z-index: 1;
         margin-top: 14px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.65);
         display: inline-block;
         padding: 8px 24px;
         border-radius: 24px;
-        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        border: 1.5px solid rgba(75, 63, 214, 0.18);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         letter-spacing: 0.03em;
@@ -602,12 +602,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 18px 24px;
-        background: linear-gradient(90deg, #16213e, #0f3460);
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        background: linear-gradient(90deg, #dbeeff, #c7e2f9);
+        border-top: 1px solid rgba(75, 63, 214, 0.12);
       }
       .btn-back {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.5);
+        color: #55618a;
         background: none;
         border: none;
         cursor: pointer;
@@ -617,7 +617,7 @@
         transition: 0.15s;
       }
       .btn-back:hover {
-        color: rgba(255, 255, 255, 0.9);
+        color: #23305c;
         text-decoration: underline;
       }
       .btns-r {
@@ -627,19 +627,19 @@
       .btn-redo {
         padding: 12px 22px;
         border-radius: 14px;
-        border: 1.5px solid rgba(255, 255, 255, 0.18);
-        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(75, 63, 214, 0.22);
+        background: rgba(255, 255, 255, 0.7);
         font-size: 13px;
         font-weight: 800;
         cursor: pointer;
         font-family: "Nunito", sans-serif;
-        color: rgba(255, 255, 255, 0.8);
+        color: #33406b;
         transition: 0.15s;
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
       }
       .btn-redo:hover {
-        background: rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.95);
         transform: translateY(-1px);
       }
       .btn-cont {
@@ -652,16 +652,16 @@
         font-weight: 900;
         cursor: pointer;
         font-family: "Nunito", sans-serif;
-        box-shadow: 0 6px 24px rgba(255, 160, 0, 0.55);
+        box-shadow: 0 6px 24px rgba(255, 160, 0, 0.4);
         transition: 0.15s;
         letter-spacing: 0.02em;
       }
       .btn-cont:hover {
-        box-shadow: 0 8px 32px rgba(255, 160, 0, 0.7);
+        box-shadow: 0 8px 32px rgba(255, 160, 0, 0.55);
         transform: translateY(-2px);
       }
       .sec-hd {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 20px;
         color: var(--g1);
         margin: 20px 0 12px;
@@ -703,7 +703,7 @@
         border-radius: 6px 6px 0 0;
       }
       .sbox.sg::before {
-        background: linear-gradient(90deg, #2e7d52, #7cc899);
+        background: linear-gradient(90deg, #4b3fd6, #9b93ff);
       }
       .sbox.ss::before {
         background: linear-gradient(90deg, #f5a623, #fbcb6a);
@@ -717,7 +717,7 @@
         display: block;
       }
       .sbox-num {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 42px;
         line-height: 1;
         letter-spacing: -0.02em;
@@ -749,7 +749,7 @@
         margin-bottom: 14px;
       }
       .prog-title {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 18px;
         color: var(--g1);
       }
@@ -760,7 +760,7 @@
       }
       .track {
         height: 16px;
-        background: rgba(46, 125, 82, 0.08);
+        background: rgba(108, 99, 255, 0.08);
         border-radius: 12px;
         overflow: hidden;
         border: none;
@@ -769,9 +769,9 @@
       .fill {
         height: 16px;
         border-radius: 12px;
-        background: linear-gradient(90deg, #2e7d52, #7cc899, #f5a623);
+        background: linear-gradient(90deg, #4b3fd6, #9b93ff, #f5a623);
         transition: width 1.2s cubic-bezier(0.22, 0.68, 0, 1);
-        box-shadow: 0 2px 8px rgba(46, 125, 82, 0.3);
+        box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
       }
       .chart-card {
         background: #fff;
@@ -880,17 +880,18 @@
         background: rgba(74, 144, 217, 0.12);
       }
       .wcard-title {
-        font-family: "Baloo 2", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 16px;
         font-weight: 700;
-        color: var(--text);
-        margin-bottom: 3px;
+        color: #1f2430;
+        margin-bottom: 4px;
       }
       .wcard-desc {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--muted);
-        line-height: 1.6;
+        font-family: "Nunito", "Segoe UI", sans-serif;
+        font-size: 13.5px;
+        font-weight: 400;
+        color: #4a5164;
+        line-height: 1.65;
       }
       .finger-grid {
         display: grid;
@@ -979,7 +980,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         color: var(--text);
       }
       .mk-key.wrong {
@@ -1006,7 +1007,7 @@
         margin-top: 2px;
       }
       .mk-cnt {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 24px;
         color: var(--red);
       }
@@ -1059,7 +1060,7 @@
         color: var(--red);
       }
       .prox-count {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 36px;
         line-height: 1.1;
       }
@@ -1122,12 +1123,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 17px;
         color: var(--text);
       }
       .prox-key.exp {
-        border-color: rgba(46, 125, 82, 0.4);
+        border-color: rgba(108, 99, 255, 0.4);
         color: var(--g1);
         background: rgba(124, 200, 153, 0.15);
       }
@@ -1153,7 +1154,7 @@
         letter-spacing: 0.05em;
       }
       .chip-minor {
-        background: rgba(46, 125, 82, 0.1);
+        background: rgba(108, 99, 255, 0.1);
         color: var(--g1);
       }
       .chip-moderate {
@@ -1193,7 +1194,7 @@
         min-width: 46px;
       }
       .prox-dist-num {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 20px;
       }
       .prox-dist-lbl {
@@ -1257,7 +1258,7 @@
         cursor: default;
       }
       .k.k-exp {
-        border-color: rgba(46, 125, 82, 0.4);
+        border-color: rgba(108, 99, 255, 0.4);
         color: var(--g1);
         background: rgba(124, 200, 153, 0.15);
       }
@@ -1341,7 +1342,7 @@
         text-align: center;
       }
       .trend-stat-num {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 28px;
         color: var(--g1);
       }
@@ -1366,8 +1367,8 @@
         color: var(--muted);
       }
       .teacher-card {
-        background: rgba(46, 125, 82, 0.05);
-        border: 2px solid rgba(46, 125, 82, 0.18);
+        background: rgba(108, 99, 255, 0.05);
+        border: 2px solid rgba(108, 99, 255, 0.18);
         border-radius: var(--r-lg);
         padding: 20px 20px;
         margin-bottom: 14px;
@@ -1390,7 +1391,7 @@
         );
       }
       .teacher-title {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 18px;
         color: var(--g1);
         margin-bottom: 12px;
@@ -1423,7 +1424,7 @@
         margin-bottom: 14px;
       }
       .tips-title {
-        font-family: "Fredoka One", sans-serif;
+        font-family: "Nunito", "Segoe UI", sans-serif;
         font-size: 18px;
         color: var(--sky);
         margin-bottom: 10px;
@@ -1477,29 +1478,33 @@
   </head>
   <body>
     <div class="bubbles" id="bubbles"></div>
-    <div class="top-bar">
-      <div class="logo-wrap">
-        <div class="logo-sun"><div class="logo-inner"></div></div>
-        <div>
-          <div class="app-title" id="hdr-title">Type Tutor</div>
-          <div class="app-sub" id="hdr-sub">Inclusive Education</div>
-        </div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 8px">
-        <a
-        <a href="home.html" class="results-home-link">🏠 Home</a>
-        <button class="lang-btn" onclick="openLang()">
-          <span id="lang-flag">🇮🇳</span>
-          <span id="lang-name">English</span> ▾
-        </button>
-      </div>
+    <div class="results-clouds" aria-hidden="true">
+      <img class="rc-1" src="assets/images/clouds1.png" alt="" />
+      <img class="rc-2" src="assets/images/clouds2.png" alt="" />
+      <img class="rc-3" src="assets/images/clouds3.png" alt="" />
     </div>
-    <div class="rainbow">
-      <div class="r1"></div>
-      <div class="r2"></div>
-      <div class="r3"></div>
-      <div class="r4"></div>
-      <div class="r5"></div>
+    <header class="top-header">
+      <img
+        src="assets/images/ie.png"
+        class="header-logo left-logo"
+        alt="Inclusive Education logo"
+      />
+      <div class="header-title">
+        <h1 id="hdr-title">Sri Sathya Sai Vidya Vahini</h1>
+        <p id="hdr-sub">Inclusive Education</p>
+      </div>
+      <img
+        src="assets/images/vv.png"
+        class="header-logo right-logo"
+        alt="Vidya Vahini logo"
+      />
+    </header>
+    <div class="results-subbar">
+      <a href="home.html" class="results-home-link">🏠 Home</a>
+      <button class="lang-btn" onclick="openLang()">
+        <span id="lang-flag">🇮🇳</span>
+        <span id="lang-name">English</span> ▾
+      </button>
     </div>
     <div class="lang-overlay" id="lang-overlay" onclick="closeLangBg(event)">
       <div class="lang-panel">
@@ -1554,8 +1559,8 @@
 
       // ── ENGLISH ──
       LANG.en = {
-        hdrTitle: "Type Tutor",
-        hdrSub: "Inclusive Education Programme",
+        hdrTitle: "Sri Sathya Sai Vidya Vahini",
+        hdrSub: "Inclusive Education",
         chooseLevel: "📚 Choose Level",
         chooseTry: "🔄 Choose Try",
         try: "Try",
@@ -4276,7 +4281,7 @@
       <div class="result-hero">
         <div class="stars-wrap">
           <span class="stars">${g.stars}</span>
-          <div class="confetti-row">${(g.confetti || "").split("").join(" ")}</div>
+          <div class="confetti-row">${Array.from(g.confetti || "").join(" ")}</div>
         </div>
         <div class="result-msg">${g.msg}</div>
         <div class="result-sub">${g.sub}</div>

@@ -20,7 +20,7 @@
     try {
       var activeId = localStorage.getItem("vv_activeProfile");
       if (activeId === "guest") {
-        return { id: "guest", name: "Guest", age: null, avatar: "Guest" };
+        return { id: "guest", name: "Guest Mode", age: null, avatar: "Guest" };
       }
       var profiles = JSON.parse(localStorage.getItem("vv_profiles") || "[]");
       return (

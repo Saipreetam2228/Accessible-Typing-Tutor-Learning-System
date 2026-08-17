@@ -36,9 +36,21 @@ function generateId() {
 
 function goToLevels(mode) {
   if (mode) localStorage.setItem(KEY_GREETING_MODE, mode);
+
+  /* If we're already on the dashboard, assigning location.href to the
+     same URL is a no-op in most browsers — nothing reloads, so the
+     top-right profile chip / greeting never refresh. Force a real
+     reload instead: this re-runs the exact same page-load sequence
+     that already correctly shows the right avatar on first arrival,
+     so there's nothing new that can go wrong. */
+  var onHome = /home\.html$/.test(window.location.pathname);
+  if (onHome) {
+    window.location.reload();
+    return;
+  }
+
   window.location.href = "home.html";
 }
-
 /* Guest mode: no name/age form — just mark the session as "guest"
    with default credentials and go straight to the dashboard. */
 function startGuestSession() {
