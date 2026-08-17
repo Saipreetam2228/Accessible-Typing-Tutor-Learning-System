@@ -1244,6 +1244,23 @@ img.cloud {
   margin-top: 16px;
 }
 
+.profile-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.profile-inline-actions .profile-new {
+  margin-top: 0;
+}
+
+.profile-guest-create {
+  margin: 14px auto 0;
+}
+
 .profile-empty {
   margin: 0;
   color: #647294;

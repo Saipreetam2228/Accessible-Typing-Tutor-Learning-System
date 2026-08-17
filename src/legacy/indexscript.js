@@ -39,6 +39,13 @@ function goToLevels(mode) {
   window.location.href = "home.html";
 }
 
+/* Guest mode: no name/age form — just mark the session as "guest"
+   with default credentials and go straight to the dashboard. */
+function startGuestSession() {
+  localStorage.setItem(KEY_ACTIVE, "guest");
+  goToLevels("guest");
+}
+
 function getModal() {
   return document.getElementById("profileModal");
 }
@@ -247,6 +254,9 @@ function wireProfileModal() {
     resetCreateForm();
     showScreen("screenCreate");
   });
+
+  document.getElementById("btnGuestFromList")?.addEventListener("click", startGuestSession);
+  document.getElementById("btnGuestFromCreate")?.addEventListener("click", startGuestSession);
 
   document.getElementById("btnCreateCancel")?.addEventListener("click", () => {
     const profiles = getProfiles();

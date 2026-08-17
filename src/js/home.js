@@ -24,6 +24,9 @@ function getProfiles() {
 
 function getActiveProfile() {
   const profileId = getActiveProfileId();
+  if (profileId === "guest") {
+    return { id: "guest", name: "Guest", age: null, avatar: "Guest" };
+  }
   return getProfiles().find((profile) => profile.id === profileId) || null;
 }
 
@@ -379,6 +382,13 @@ function syncProfileAvatarChip() {
   var img = document.getElementById("profileAvatarChipImg");
   if (!img) return;
   var profile = getActiveProfile();
+  if (profile && profile.avatar === "Guest") {
+    img.src = "assets/images/profile.png";
+    img.onerror = function () {
+      img.src = "assets/images/prem/prem-dp.png";
+    };
+    return;
+  }
   var avatarName = (
     profile && profile.avatar ? profile.avatar : "Prem"
   ).toLowerCase();

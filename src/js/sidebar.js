@@ -18,8 +18,11 @@
   /* ── Read active profile from localStorage ── */
   function getActiveProfile() {
     try {
-      var profiles = JSON.parse(localStorage.getItem("vv_profiles") || "[]");
       var activeId = localStorage.getItem("vv_activeProfile");
+      if (activeId === "guest") {
+        return { id: "guest", name: "Guest", age: null, avatar: "Guest" };
+      }
+      var profiles = JSON.parse(localStorage.getItem("vv_profiles") || "[]");
       return (
         profiles.find(function (p) {
           return String(p.id) === String(activeId);
@@ -35,6 +38,7 @@
   /* ── Avatar image path ── */
   function getAvatarSrc(profile) {
     if (!profile) return pre + "assets/images/prem/prem-dp.png";
+    if (profile.avatar === "Guest") return pre + "assets/images/profile.png";
     var name = (profile.avatar || "Prem").toLowerCase();
     return pre + "assets/images/" + name + "/" + name + "-dp.png";
   }
@@ -50,7 +54,12 @@
   function buildSidebar() {
     var profile = getActiveProfile();
     var name = profile ? escapeHtml(profile.name || "Player") : "No profile";
-    var age = profile ? "Age " + escapeHtml(profile.age || "—") : "No profile";
+    var isGuest = profile && profile.avatar === "Guest";
+    var age = isGuest
+      ? ""
+      : profile
+        ? "Age " + escapeHtml(profile.age || "—")
+        : "No profile";
     var avatarSrc = getAvatarSrc(profile);
 
     function activeIf(condition) {
@@ -129,7 +138,7 @@
            onerror="this.src='${pre}assets/images/prem/prem-dp.png'">
       <div class="sidebar-profile-info">
         <div class="sidebar-profile-name" id="sidebarProfileName">${name}</div>
-        <div class="sidebar-profile-sub" id="sidebarProfileSub">${age}</div>
+        <div class="sidebar-profile-sub" id="sidebarProfileSub" style="${age ? "" : "display:none;"}">${age}</div>
       </div>
       <span style="font-size:0.8rem;opacity:0.5;">✏️</span>
     </div>
@@ -164,8 +173,17 @@
         var nameEl = document.getElementById("sidebarProfileName");
         var subEl = document.getElementById("sidebarProfileSub");
         var imgEl = document.getElementById("sidebarAvatarImg");
+        var isGuestNow = p.avatar === "Guest";
         if (nameEl) nameEl.textContent = escapeHtml(p.name || "Player");
-        if (subEl) subEl.textContent = "Age " + escapeHtml(p.age || "—");
+        if (subEl) {
+          if (isGuestNow) {
+            subEl.textContent = "";
+            subEl.style.display = "none";
+          } else {
+            subEl.textContent = "Age " + escapeHtml(p.age || "—");
+            subEl.style.display = "";
+          }
+        }
         if (imgEl) imgEl.src = getAvatarSrc(p);
       }
     }

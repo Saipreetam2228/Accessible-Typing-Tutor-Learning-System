@@ -226,13 +226,14 @@
           <p class="profile-kicker">Choose a learner</p>
           <h2 id="profileModalTitle">Who's playing?</h2>
           <div id="profileList" class="profile-list"></div>
-          <button
-            class="profile-secondary profile-new"
-            id="btnNewProfile"
-            type="button"
-          >
-            + New Profile
-          </button>
+          <div class="profile-inline-actions">
+            <button class="profile-secondary profile-guest" id="btnGuestFromList" type="button">
+              Guest
+            </button>
+            <button class="profile-secondary profile-new" id="btnNewProfile" type="button">
+              + New Profile
+            </button>
+          </div>
         </div>
 
         <div id="screenCreate" class="profile-screen">
@@ -285,14 +286,13 @@
           <p id="createError" class="profile-error" role="alert"></p>
 
           <div class="profile-actions">
+            <button class="profile-secondary" id="btnGuestFromCreate" type="button">
+              Guest
+            </button>
             <button class="profile-primary" id="btnCreateSave" type="button">
               Save &amp; Start
             </button>
-            <button
-              class="profile-secondary"
-              id="btnCreateCancel"
-              type="button"
-            >
+            <button class="profile-secondary" id="btnCreateCancel" type="button">
               Cancel
             </button>
           </div>
